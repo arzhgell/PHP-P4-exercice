@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  web:
+    image: nginx:alpine
+    container_name: php_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - artbox
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: php_fpm
+    volumes:
+      - .:/var/www/html
+    networks:
+      - artbox
+
+  db:
+    image: mysql:8.0
+    container_name: php_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: artbox
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - artbox
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: php_phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8080:80
+    networks:
+      - artbox
+
+networks:
+  artbox:
+    driver: bridge
+
+volumes:
+  mysql_data: 

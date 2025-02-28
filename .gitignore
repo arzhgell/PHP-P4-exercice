@@ -1,0 +1,21 @@
+# IDE
+.idea/
+.vscode/
+
+# Système
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+
+# Dossiers générés
+/public/uploads/
+/vendor/
+
+# Fichiers de logs
+*.log
+
+# Variables d'environnement
+.env
+.env.local 

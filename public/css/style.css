@@ -9,7 +9,6 @@ html, body {
     font-family: 'Poppins', sans-serif;
 }
 
-
 a {
     text-decoration: none;
     color: inherit;
@@ -45,23 +44,21 @@ footer {
     font-size: 12px;
 }
 
-
-
-#liste-oeuvres {
+#artwork-list {
     display: flex;
     flex-wrap: wrap;
 }
 
-.oeuvre {
+.artwork {
     width: 33.33%;
     padding: 15px;
 }
 
-.oeuvre img {
+.artwork img {
     width: 100%;
 }
 
-.oeuvre h2, #detail-oeuvre h1 {
+.artwork h2, #artwork-detail h1 {
     text-transform: uppercase;
     margin-top: 0;
     margin-bottom: 0;
@@ -69,14 +66,14 @@ footer {
     font-size: 30px;
 }
 
-.oeuvre .description, #detail-oeuvre .description {
+.artwork .description, #artwork-detail .description {
     font-style: italic;
     margin-top: 0;
     font-size: 12px;
     margin-bottom: 20px;
 }
 
-#detail-oeuvre {
+#artwork-detail {
     display: flex;
     flex-wrap: wrap;
     align-items: end;
@@ -86,17 +83,17 @@ footer {
     padding: 0 15px;
 }
 
-#img-oeuvre {
+#artwork-image {
     margin-right: 25px;
 }
 
-#img-oeuvre img {
+#artwork-image img {
     max-width: 470px;
     margin: auto;
     display: block;
 }
 
-#contenu-oeuvre {
+#artwork-content {
     max-width: 470px;
 }
 
@@ -108,7 +105,7 @@ form {
     padding: 50px 10px;
 }
 
-.champ-formulaire {
+.form-field {
     display: flex;
     flex-direction: column;
     margin-bottom: 25px;
@@ -133,29 +130,28 @@ input[type="submit"] {
     padding: 7px;
 }
 
-
 @media (max-width: 850px) {
-    .oeuvre {
+    .artwork {
         width: 50%;
     }
 
-    #img-oeuvre {
+    #artwork-image {
         margin-right: 0;
         width: 100%;
     }
 
-    #img-oeuvre img {
+    #artwork-image img {
         width: 100%;
     }
 
-    #contenu-oeuvre {
+    #artwork-content {
         width: 100%;
         margin: auto;
     }
 }
 
 @media (max-width: 600px) {
-    .oeuvre {
+    .artwork {
         width: 100%;
     }
 
@@ -167,4 +163,34 @@ input[type="submit"] {
         flex-direction: column;
         gap: 0;
     }
+}
+
+/* Success and error messages */
+.message {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.message.error ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+/* Required field marker */
+label[for]:after {
+    content: " *";
+    color: #721c24;
 }
